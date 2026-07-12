@@ -143,4 +143,4 @@ service-desk-home-lab/
 
 Eti-ima Essien  
 Service Desk Analyst | ISC2 Certified | TryHackMe SOC Level 1  
-www.linkedin.com/in/eti-ima-essien | [GitHub Profile URL]
+www.linkedin.com/in/eti-ima-essien | https://github.com/etimaessien007
