@@ -1,0 +1,67 @@
+EMAIL HEADER ANALYSIS REPORT
+==============================
+Date:     07/07/2026
+Analyst:  Eti-ima Essien
+Tool(s):  MXToolbox + PhishTool + Kali Linux
+Ref:      Ticket #409131
+
+EMAIL DETAILS:
+From:     IT-Support@servercorp-helpdesk.net
+To:       mjohnson@servercorp.local
+Subject:  URGENT: Verify Your Account Immediately
+Date:     Thu, 03 Jul 2026 09:15:20
+
+AUTHENTICATION RESULTS:
+SPF:   FAIL 
+DKIM:  FAIL 
+DMARC: FAIL 
+
+ORIGINATING IP: 185.234.219.44
+IP Location:    IP location shows that email originated from 'Lithuania', Girarite, kauno raj. 54310 Topoliu g. 11-3
+Reverse DNS:    It shows 185.234.219.44 not found 3(NXDOMAIN)
+Spam Score:     8.4/10 (HIGH)
+
+KEY RED FLAGS IDENTIFIED:
+ SPF failure — sender not authorized
+ DKIM failure — message integrity compromised
+ DMARC failure — no domain policy protection
+ High spam score (8.4)
+ Sender domain (servercorp-helpdesk.net)
+   does not match legitimate domain (servercorp.local)
+ Originating IP has no legitimate reverse DNS
+ Urgent language designed to create panic
+
+VERDICT: CONFIRMED PHISHING 
+RISK LEVEL: HIGH 
+RECOMMENDED ACTION: Block sender domain,
+alert all staff, preserve email for forensics
+
+KALI LINUX IP INVESTIGATION
+============================
+Command 1: host 185.234.219.44
+Result: NXDOMAIN — no reverse DNS record
+Finding: No legitimate mail server lacks reverse DNS 
+
+Command 2: nslookup 185.234.219.44
+Result: NXDOMAIN confirmed
+Finding: IP untraceable to any legitimate domain 
+
+Command 3: whois 185.234.219.44
+Result: 
+  Organization: IT business solutions MB
+  Country: Lithuania
+  Abuse Contact: andrius.peteraitis@gmail.com
+Finding: 
+   IP originates from Lithuania
+     not from SERVERCORP infrastructure
+   Abuse contact uses Gmail
+     indicating non-legitimate ISP
+   IP block created Nov 2023
+     recently registered infrastructure
+
+COMBINED VERDICT:
+Every single check confirms this is a 
+sophisticated phishing attempt originating
+from Eastern Europe using recently registered
+infrastructure with no legitimate mail server
+configuration.	
