@@ -1,0 +1,76 @@
+EMAIL HEADER COMPARISON ANALYSIS
+==================================
+Date:     07/15/2026
+Analyst:  Eti-ima Essien
+Tool:     MXToolbox Header Analyzer
+
+PURPOSE:
+Compare headers from a legitimate internal email
+against a known phishing email to identify
+key differences analysts look for.
+
+
+ANALYSIS 1 — LEGITIMATE INTERNAL EMAIL
+=======================================
+Subject:    Test Email - Internal Lab Communication
+From:       jsmith@servercorp.local
+To:         mjohnson@servercorp.local
+Mail Server: WIN-R2UHS0K0KQO.servercorp.local
+Routing:    Single clean hop
+Delay:      0 seconds
+SPF:        N/A (private .local domain)
+DKIM:       N/A (private .local domain)
+DMARC:      N/A (private .local domain)
+
+KEY INDICATORS OF LEGITIMACY:
+ Originates from known internal server
+ Single clean routing hop
+ Zero delivery delay
+ Sender and recipient on same domain
+ No suspicious relay servers
+
+VERDICT: LEGITIMATE 
+
+
+ANALYSIS 2 — PHISHING EMAIL
+===============================
+Subject:    URGENT: Verify Your Account Immediately
+From:       IT-Support@servercorp-helpdesk.net
+To:         mjohnson@servercorp.local
+Origin IP:  185.234.219.44 (Lithuania)
+Routing:    Multiple suspicious hops
+SPF:        FAIL 
+DKIM:       FAIL 
+DMARC:      FAIL 
+Reverse DNS: NXDOMAIN 
+Spam Score: 8.4/10 HIGH 
+Abuse Contact: Gmail address 
+
+KEY INDICATORS OF PHISHING:
+ Originates from Lithuania
+   claiming to be SERVERCORP IT Support
+ No reverse DNS record
+ SPF/DKIM/DMARC all failed
+ High spam score
+ Sender domain mimics legitimate domain
+ Urgent language designed to panic user
+ ISP abuse contact uses Gmail
+
+VERDICT: CONFIRMED PHISHING 
+
+
+ANALYST CONCLUSION
+====================================
+The contrast between these two emails
+demonstrates the key technical indicators
+analysts use to identify phishing:
+
+1. IP Origin — where did it REALLY come from?
+2. Reverse DNS — does the IP resolve back?
+3. SPF/DKIM/DMARC — is sender authorized?
+4. Routing — how many hops and are they clean?
+5. Domain similarity — mimicking legitimate names?
+6. Urgency — pressuring user to act immediately?
+
+A single failed check warrants investigation.
+Multiple failures confirm malicious intent.
