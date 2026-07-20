@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Desk Home Lab | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: #0d1117;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #21262d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: #58a6ff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover {
+            color: #58a6ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #21262d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, #1f6feb22 0%, transparent 70%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #1f6feb22;
+            border: 1px solid #1f6feb;
+            color: #58a6ff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: #58a6ff;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #238636;
+            color: #ffffff;
+            border: 1px solid #2ea043;
+        }
+
+        .btn-primary:hover {
+            background: #2ea043;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #58a6ff;
+            border: 1px solid #30363d;
+        }
+
+        .btn-secondary:hover {
+            background: #21262d;
+            border-color: #58a6ff;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: #161b22;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #58a6ff;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #8b949e;
+            margin-top: 0.25rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #f0f6fc;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #21262d;
+        }
+
+        .section-title span {
+            color: #58a6ff;
+        }
+
+        .section-subtitle {
+            color: #8b949e;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Lab Architecture */
+        .architecture {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            font-family: monospace;
+        }
+
+        .architecture pre {
+            color: #58a6ff;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-3px);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: #f0f6fc;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .card ul li {
+            color: #8b949e;
+            font-size: 0.88rem;
+            padding: 0.2rem 0;
+        }
+
+        .card ul li::before {
+            content: "✅ ";
+        }
+
+        /* Tickets Table */
+        .tickets-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .tickets-table th {
+            background: #161b22;
+            color: #58a6ff;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #21262d;
+        }
+
+        .tickets-table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid #21262d;
+            color: #8b949e;
+        }
+
+        .tickets-table tr:hover td {
+            background: #161b22;
+            color: #e0e0e0;
+        }
+
+        .priority-emergency { color: #ff4444; font-weight: 600; }
+        .priority-high { color: #ff8800; font-weight: 600; }
+        .priority-normal { color: #58a6ff; font-weight: 600; }
+        .status-closed { color: #2ea043; font-weight: 600; }
+
+        /* Scripts Section */
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .script-card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.3s;
+        }
+
+        .script-card:hover {
+            border-color: #238636;
+        }
+
+        .script-name {
+            color: #2ea043;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .script-desc {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .skill-category h4 {
+            color: #58a6ff;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #21262d;
+            color: #8b949e;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+        }
+
+        /* Security Section */
+        .security-findings {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-left: 4px solid #ff4444;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .security-findings h4 {
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+
+        .finding-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .finding-item .flag {
+            color: #ff4444;
+            flex-shrink: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #21262d;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #58a6ff;
+            border: 2px solid #0a0e1a;
+        }
+
+        .timeline-date {
+            color: #58a6ff;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            color: #f0f6fc;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-desc {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .profile-info h2 {
+            color: #f0f6fc;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #8b949e;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+
+        .profile-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #21262d;
+            color: #58a6ff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 1px solid #30363d;
+            transition: all 0.3s;
+        }
+
+        .profile-link:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+        }
+
+        .certs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .cert-badge {
+            background: #1f6feb22;
+            border: 1px solid #1f6feb;
+            color: #58a6ff;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1117;
+            border-top: 1px solid #21262d;
+            padding: 2rem;
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .stats-bar { gap: 2rem; }
+            nav ul { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="logo">🖥️ ServiceDesk Lab</div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#tickets">Tickets</a></li>
+        <li><a href="#scripts">Scripts</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#skills">Skills</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-badge">🔐 Service Desk & Security Operations</div>
+    <h1>Enterprise <span>Service Desk</span><br>Home Lab</h1>
+    <p>A fully functional IT home lab simulating real enterprise Service Desk operations — built from scratch using Windows Server 2022, Active Directory, osTicket, PowerShell and Kali Linux.</p>
+    <div class="hero-buttons">
+        <a href="https://github.com/etimaessien007/service-desk-home-lab" class="btn btn-primary" target="_blank">
+            📁 View on GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/eti-ima-essien" class="btn btn-secondary" target="_blank">
+            💼 Connect on LinkedIn
+        </a>
+    </div>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+    <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Virtual Machines</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Tickets Resolved</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">5</div>
+        <div class="stat-label">PowerShell Scripts</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">AD Users Managed</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Weeks Built</div>
+    </div>
+</div>
+
+<!-- About -->
+<section id="about">
+    <h2 class="section-title">👤 About <span>This Project</span></h2>
+    <p class="section-subtitle">Built to demonstrate practical Service Desk and cybersecurity skills</p>
+
+    <div class="profile-section">
+        <div class="profile-info">
+            <h2>Eti-ima essien</h2>
+            <p>Incoming Service Desk Analyst with a background in computer programming and cybersecurity. This lab was built over two weeks to simulate real enterprise IT operations — from Active Directory administration to phishing investigation — bridging Service Desk and Security Operations.</p>
+            <div class="certs">
+                <span class="cert-badge">🏆 ISC2 Certified</span>
+                <span class="cert-badge">🎯 TryHackMe SOC Level 1</span>
+                <span class="cert-badge">💻 CompTIA Sec+ (In Progress)</span>
+                <span class="cert-badge">🖥️ Service Desk Analyst</span>
+            </div>
+            <div class="profile-links" style="margin-top: 1rem">
+                <a href="https://github.com/etimaessien007/service-desk-home-lab" class="profile-link" target="_blank">
+                    📁 GitHub Repository
+                </a>
+                <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-URL" class="profile-link" target="_blank">
+                    💼 LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lab Architecture -->
+<section id="lab">
+    <h2 class="section-title">🏗️ Lab <span>Architecture</span></h2>
+    <p class="section-subtitle">Three VM environment on an isolated CyberLab NAT network</p>
+
+    <div class="architecture">
+        <pre>
+CyberLab NAT Network (192.168.100.0/24)
+│
+├── 🖥️  Windows Server 2022    192.168.100.10
+│         Domain Controller
+│         Active Directory + DNS
+│         osTicket v1.18.4 (WAMP)
+│         hMailServer
+│         PowerShell Scripts
+│
+├── 💻  Windows 11 Pro         192.168.100.6
+│         WIN11-CLIENT
+│         Domain: servercorp.local
+│         Thunderbird Email Client
+│
+└── 🐉  Kali Linux             192.168.100.5
+          Security Investigation
+          WHOIS + NSLOOKUP + HOST
+          Phishing Analysis
+        </pre>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Windows Server 2022</h3>
+            <p>Enterprise Domain Controller running Active Directory, DNS, osTicket helpdesk and hMailServer.</p>
+            <ul>
+                <li>Domain Controller promoted</li>
+                <li>AD DS + DNS configured</li>
+                <li>5 Department OUs created</li>
+                <li>10+ user accounts managed</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">💻</div>
+            <h3>Windows 11 Pro</h3>
+            <p>Enterprise client machine joined to the servercorp.local domain for end-user simulation.</p>
+            <ul>
+                <li>Domain joined (servercorp.local)</li>
+                <li>Static IP configured</li>
+                <li>Thunderbird email client</li>
+                <li>Remote diagnostics target</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🐉</div>
+            <h3>Kali Linux</h3>
+            <p>Security investigation platform used for phishing analysis and threat intelligence gathering.</p>
+            <ul>
+                <li>WHOIS investigation</li>
+                <li>DNS + reverse DNS analysis</li>
+                <li>IP geolocation research</li>
+                <li>RIPE database queries</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Tickets -->
+<section id="tickets">
+    <h2 class="section-title">🎫 Service Desk <span>Tickets</span></h2>
+    <p class="section-subtitle">5 realistic tickets simulating a full Service Desk day</p>
+
+    <table class="tickets-table">
+        <thead>
+            <tr>
+                <th>Ticket #</th>
+                <th>Issue</th>
+                <th>Priority</th>
+                <th>SLA</th>
+                <th>Department</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#152593</td>
+                <td>Password Reset — Account Locked</td>
+                <td class="priority-high">High</td>
+                <td>SEV-B (4hr)</td>
+                <td>IT Support</td>
+                <td class="status-closed">Closed ✅</td>
+            </tr>
+            <tr>
+                <td>#409131</td>
+                <td>Suspicious Email — Phishing Report</td>
+                <td class="priority-emergency">Emergency</td>
+                <td>SEV-A (1hr)</td>
+                <td>Security</td>
+                <td class="status-closed">Closed ✅</td>
+            </tr>
+            <tr>
+                <td>#721277</td>
+                <td>New Employee Onboarding</td>
+                <td class="priority-normal">Normal</td>
+                <td>SEV-B (4hr)</td>
+                <td>IT Support</td>
+                <td class="status-closed">Closed ✅</td>
+            </tr>
+            <tr>
+                <td>#270288</td>
+                <td>Hardware Issue — Slow Computer</td>
+                <td class="priority-high">High</td>
+                <td>SEV-B (4hr)</td>
+                <td>IT Support</td>
+                <td class="status-closed">Closed ✅</td>
+            </tr>
+            <tr>
+                <td>#459244</td>
+                <td>Network Connectivity Issue</td>
+                <td class="priority-high">High</td>
+                <td>SEV-B (4hr)</td>
+                <td>IT Support</td>
+                <td class="status-closed">Closed ✅</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Scripts -->
+<section id="scripts">
+    <h2 class="section-title">💻 PowerShell <span>Automation</span></h2>
+    <p class="section-subtitle">5 automation scripts built to streamline Service Desk operations</p>
+
+    <div class="scripts-grid">
+        <div class="script-card">
+            <div class="script-name">📄 Onboard-Employee.ps1</div>
+            <div class="script-desc">Creates AD user account, assigns to correct OU, grants folder permissions and generates onboarding report automatically.</div>
+        </div>
+        <div class="script-card">
+            <div class="script-name">📄 Offboard-Employee.ps1</div>
+            <div class="script-desc">Disables AD account, removes all group memberships, moves to Disabled Users OU, resets password and generates offboarding report.</div>
+        </div>
+        <div class="script-card">
+            <div class="script-name">📄 Bulk-UserCreation.ps1</div>
+            <div class="script-desc">Reads from CSV file to create multiple AD users with email addresses, department assignment and OU placement in one automated run.</div>
+        </div>
+        <div class="script-card">
+            <div class="script-name">📄 Hardware-Diagnostic.ps1</div>
+            <div class="script-desc">Analyzes CPU usage, RAM availability and disk health. Clears temporary files and generates diagnostic report for Service Desk records.</div>
+        </div>
+        <div class="script-card">
+            <div class="script-name">📄 Network-Diagnostic.ps1</div>
+            <div class="script-desc">Tests gateway and DNS connectivity, flushes DNS cache, renews IP address and resets TCP/IP network stack with full diagnostic logging.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Security -->
+<section id="security">
+    <h2 class="section-title">🔐 Security <span>Investigation</span></h2>
+    <p class="section-subtitle">Phishing email investigation using multi-tool approach</p>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">📧</div>
+            <h3>Email Header Analysis</h3>
+            <p>Analyzed phishing email headers using MXToolbox and PhishTool to identify authentication failures and suspicious routing.</p>
+            <ul>
+                <li>SPF: FAIL identified</li>
+                <li>DKIM: FAIL identified</li>
+                <li>DMARC: FAIL identified</li>
+                <li>Spam score: 8.4/10</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🌍</div>
+            <h3>IP Investigation (Kali)</h3>
+            <p>Traced phishing email origin to Lithuania using WHOIS, confirmed no reverse DNS and identified suspicious ISP abuse contact.</p>
+            <ul>
+                <li>WHOIS: Lithuania origin</li>
+                <li>HOST: NXDOMAIN confirmed</li>
+                <li>NSLOOKUP: No DNS records</li>
+                <li>RIPE database analyzed</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Comparison Analysis</h3>
+            <p>Side by side comparison of legitimate internal email vs phishing email headers documenting key indicators of compromise.</p>
+            <ul>
+                <li>Legitimate vs phishing routing</li>
+                <li>Authentication comparison</li>
+                <li>IOCs documented</li>
+                <li>Formal report filed</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="security-findings">
+        <h4>🚨 Phishing Indicators Identified</h4>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>Sender domain (servercorp-helpdesk.net) mimicking legitimate company domain (servercorp.local)</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>SPF, DKIM and DMARC authentication all failed — sender not authorized</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>Originating IP (185.234.219.44) traced to Lithuania via RIPE database</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>No reverse DNS record (NXDOMAIN) — legitimate mail servers always have reverse DNS</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>ISP abuse contact using Gmail address — not a legitimate ISP</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>High spam score of 8.4/10 flagged by MXToolbox</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag">❌</span>
+            <span>Urgency language designed to panic user into immediate action</span>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <h2 class="section-title">🛠️ <span>Skills</span> Demonstrated</h2>
+    <p class="section-subtitle">Technical skills evidenced through hands-on lab work</p>
+
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h4>Infrastructure</h4>
+            <span class="skill-tag">Windows Server 2022</span>
+            <span class="skill-tag">Active Directory</span>
+            <span class="skill-tag">DNS</span>
+            <span class="skill-tag">VirtualBox</span>
+            <span class="skill-tag">NAT Networking</span>
+        </div>
+        <div class="skill-category">
+            <h4>Helpdesk</h4>
+            <span class="skill-tag">osTicket</span>
+            <span class="skill-tag">Ticket Triage</span>
+            <span class="skill-tag">SLA Management</span>
+            <span class="skill-tag">Escalation</span>
+            <span class="skill-tag">Documentation</span>
+        </div>
+        <div class="skill-category">
+            <h4>Scripting</h4>
+            <span class="skill-tag">PowerShell</span>
+            <span class="skill-tag">AD Automation</span>
+            <span class="skill-tag">CSV Processing</span>
+            <span class="skill-tag">Error Handling</span>
+            <span class="skill-tag">Report Generation</span>
+        </div>
+        <div class="skill-category">
+            <h4>Security</h4>
+            <span class="skill-tag">Phishing Analysis</span>
+            <span class="skill-tag">Email Headers</span>
+            <span class="skill-tag">WHOIS</span>
+            <span class="skill-tag">MXToolbox</span>
+            <span class="skill-tag">PhishTool</span>
+        </div>
+        <div class="skill-category">
+            <h4>Tools</h4>
+            <span class="skill-tag">Kali Linux</span>
+            <span class="skill-tag">Thunderbird</span>
+            <span class="skill-tag">hMailServer</span>
+            <span class="skill-tag">WAMP</span>
+            <span class="skill-tag">phpMyAdmin</span>
+        </div>
+        <div class="skill-category">
+            <h4>Soft Skills</h4>
+            <span class="skill-tag">User Communication</span>
+            <span class="skill-tag">Incident Reporting</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Documentation</span>
+            <span class="skill-tag">Prioritization</span>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline -->
+<section>
+    <h2 class="section-title">📅 Project <span>Timeline</span></h2>
+    <p class="section-subtitle">Two week build from scratch to complete lab</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">Week 1 — Day 1</div>
+            <div class="timeline-title">Infrastructure Setup</div>
+            <div class="timeline-desc">Deployed Windows Server 2022, promoted to Domain Controller, configured Active Directory with full OU structure and joined Windows 11 Pro client to domain.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Week 1 — Day 2</div>
+            <div class="timeline-title">Helpdesk Operations</div>
+            <div class="timeline-desc">Installed osTicket v1.18.4 via WAMP, configured departments, SLA plans and agents, then completed 5 realistic Service Desk tickets end to end.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Week 1 — Day 3</div>
+            <div class="timeline-title">PowerShell Automation</div>
+            <div class="timeline-desc">Built 5 automation scripts covering employee onboarding, offboarding, bulk user creation, hardware diagnostics and network troubleshooting.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Week 2 — Day 1</div>
+            <div class="timeline-title">Email Security Analysis</div>
+            <div class="timeline-desc">Analyzed phishing email headers using MXToolbox and PhishTool. Investigated originating IP on Kali Linux via WHOIS and confirmed phishing via NXDOMAIN.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Week 2 — Day 2</div>
+            <div class="timeline-title">Live Mail Server</div>
+            <div class="timeline-desc">Installed hMailServer, configured internal email accounts for all AD users, set up Thunderbird and sent real emails between domain users for header comparison analysis.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Built by <strong>Eti-ima essien</strong> — Service Desk Analyst | ISC2 Certified | TryHackMe SOC Level 1</p>
+    <p style="margin-top: 0.5rem">
+        <a href="https://github.com/etimaessien007/service-desk-home-lab" target="_blank">GitHub Repository</a>
+        &nbsp;•&nbsp;
+        <a href="https://www.linkedin.com/in/eti-ima-essien" target="_blank">LinkedIn Profile</a>
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #484f58">
+        © 2026 — Always Building. Always Learning. 💻🔐
+    </p>
+</footer>
+
+</body>
+</html>
