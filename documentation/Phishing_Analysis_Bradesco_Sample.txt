@@ -1,0 +1,29 @@
+PHISHING ANALYSIS — SAMPLE 1
+==============================
+Target:    Brazilian banking customers
+Impersonating: Banco Bradesco LIVELO
+Tactic:    Reward points urgency
+           ("92,990 points expiring TODAY")
+
+TECHNICAL INDICATORS:
+ Sent from DigitalOcean VPS (137.184.34.4)
+ Resolves to Cloudways hosting infrastructure
+ SPF: TempError — sender cannot be validated
+ DKIM: None — message completely unsigned
+ DMARC: No policy — no domain protection
+ Hop 2 and Hop 5 flagged as BLACKLISTED
+ 55 second delay at origin hop
+ Sender domain: atendimento.com.br
+   Real bank domain: bradesco.com.br
+ Content encoded in base64
+   (common malicious content concealment)
+ Urgency language in subject line
+
+ATTACK TYPE: Brand Impersonation Phishing
+SOPHISTICATION: Medium
+→ Uses legitimate email relay (Office365)
+  to bypass basic spam filters
+→ But technical indicators still expose it
+
+VERDICT: CONFIRMED PHISHING 
+RISK LEVEL: HIGH
