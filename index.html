@@ -538,6 +538,7 @@
         <li><a href="#tickets">Tickets</a></li>
         <li><a href="#scripts">Scripts</a></li>
         <li><a href="#security">Security</a></li>
+        <li><a href="#gpo">Group Policy</a></li>
         <li><a href="#skills">Skills</a></li>
     </ul>
 </nav>
@@ -575,6 +576,10 @@
         <div class="stat-number">10+</div>
         <div class="stat-label">AD Users Managed</div>
     </div>
+    <div class="stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">GPOs Configured</div>
+    </div
 </div>
 
 <!-- About -->
@@ -831,6 +836,110 @@ CyberLab NAT Network (192.168.100.0/24)
             <span>Urgency language designed to panic user into immediate action</span>
         </div>
     </div>
+    
+</section>
+
+<!-- Group Policy -->
+<section id="gpo">
+    <h2 class="section-title">🛡️ Group Policy <span>Management</span></h2>
+    <p class="section-subtitle">6 enterprise GPOs deployed across the SERVERCORP domain</p>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">🔑</div>
+            <h3>Password Policy</h3>
+            <p>Domain-wide password security baseline enforced via Default Domain Policy.</p>
+            <ul>
+                <li>Minimum length: 10 characters</li>
+                <li>Maximum age: 90 days</li>
+                <li>Password history: 24 remembered</li>
+                <li>Complexity requirements enabled</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔒</div>
+            <h3>Account Lockout Policy</h3>
+            <p>Protects domain accounts from brute force attacks with automatic lockout.</p>
+            <ul>
+                <li>Lockout after 5 failed attempts</li>
+                <li>Lockout duration: 30 minutes</li>
+                <li>Counter reset: 30 minutes</li>
+                <li>Tested and verified via AD PowerShell</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🚫</div>
+            <h3>USB Restriction Policy</h3>
+            <p>Blocks all removable storage devices domain-wide to prevent data exfiltration.</p>
+            <ul>
+                <li>All removable storage denied</li>
+                <li>Read access blocked</li>
+                <li>Write access blocked</li>
+                <li>Execute access blocked</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Desktop Wallpaper Policy</h3>
+            <p>Enforces company branding across all domain computers via network share.</p>
+            <ul>
+                <li>Wallpaper hosted on SMB share</li>
+                <li>Applied at user login via GPO</li>
+                <li>Verified on WIN11-CLIENT</li>
+                <li>Cannot be changed by users</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">⛔</div>
+            <h3>Command Prompt Restriction</h3>
+            <p>Blocks CMD and PowerShell for standard users while preserving admin access.</p>
+            <ul>
+                <li>CMD blocked for standard users</li>
+                <li>PowerShell blocked for standard users</li>
+                <li>Administrators retain full access</li>
+                <li>Reduces unauthorized script execution</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔄</div>
+            <h3>Windows Update Policy</h3>
+            <p>Enforces automatic update scheduling across all domain computers.</p>
+            <ul>
+                <li>Auto download and install enabled</li>
+                <li>Scheduled daily at 03:00</li>
+                <li>Users cannot disable updates</li>
+                <li>Ensures consistent patch compliance</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="security-findings" style="border-left-color: #2ea043; margin-top: 2rem;">
+        <h4 style="color: #2ea043;">✅ GPO Deployment Summary</h4>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>All 6 GPOs linked to SERVERCORP Company OU and verified with GpoStatus: AllSettingsEnabled</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Password and lockout policies applied at domain level via Default Domain Policy</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>GPO application verified on WIN11-CLIENT using gpresult /r confirming all policies applied</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Desktop wallpaper confirmed visible on domain client after user login</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Command Prompt restriction tested — standard users blocked, administrators retain access</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Windows Update policy enforced — update options greyed out for standard domain users</span>
+        </div>
+    </div>
 </section>
 
 <!-- Skills -->
@@ -870,6 +979,17 @@ CyberLab NAT Network (192.168.100.0/24)
             <span class="skill-tag">WHOIS</span>
             <span class="skill-tag">MXToolbox</span>
             <span class="skill-tag">PhishTool</span>
+        </div>
+        <div class="skill-category">
+            <h4>Group Policy</h4>
+            <span class="skill-tag">GPO Creation</span>
+            <span class="skill-tag">Password Policy</span>
+            <span class="skill-tag">Account Lockout</span>
+            <span class="skill-tag">USB Restriction</span>
+            <span class="skill-tag">Software Restriction</span>
+            <span class="skill-tag">gpupdate</span>
+            <span class="skill-tag">gpresult</span>
+            <span class="skill-tag">SMB Shares</span>
         </div>
         <div class="skill-category">
             <h4>Tools</h4>
@@ -920,6 +1040,11 @@ CyberLab NAT Network (192.168.100.0/24)
             <div class="timeline-date">Week 2 — Day 2</div>
             <div class="timeline-title">Live Mail Server</div>
             <div class="timeline-desc">Installed hMailServer, configured internal email accounts for all AD users, set up Thunderbird and sent real emails between domain users for header comparison analysis.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Week 3</div>
+            <div class="timeline-title">Group Policy Management</div>
+            <div class="timeline-desc">Deployed 6 enterprise GPOs across the SERVERCORP domain covering password security, account lockout, USB restriction, desktop branding, command prompt restriction and Windows Update scheduling.</div>
         </div>
     </div>
 </section>
