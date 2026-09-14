@@ -947,7 +947,114 @@ CyberLab NAT Network (192.168.100.0/24)
             <span>Windows Update policy enforced — update options greyed out for standard domain users</span>
         </div>
     </div>
-</section> 
+</section>
+
+<!-- DNS Management -->
+<section id="dns">
+    <h2 class="section-title">🌐 DNS <span>Management</span></h2>
+    <p class="section-subtitle">Complete DNS zone configuration for servercorp.local</p>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">📍</div>
+            <h3>A Records</h3>
+            <p>Created host records mapping server names to IP addresses within the servercorp.local zone.</p>
+            <ul>
+                <li>fileserver → 192.168.100.20</li>
+                <li>printserver → 192.168.100.21</li>
+                <li>backupserver → 192.168.100.22</li>
+                <li>helpdesk → 192.168.100.10</li>
+                <li>mail → 192.168.100.10</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔗</div>
+            <h3>CNAME Records</h3>
+            <p>Created alias records providing user-friendly shortcuts to existing hostnames.</p>
+            <ul>
+                <li>files → fileserver.servercorp.local</li>
+                <li>print → printserver.servercorp.local</li>
+                <li>backup → backupserver.servercorp.local</li>
+                <li>support → helpdesk.servercorp.local</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">📧</div>
+            <h3>MX & TXT Records</h3>
+            <p>Configured mail exchanger records and SPF authentication record for email security.</p>
+            <ul>
+                <li>MX Priority 10 → mail.servercorp.local</li>
+                <li>MX Priority 20 → backupserver (redundancy)</li>
+                <li>SPF: v=spf1 ip4:192.168.100.10 -all</li>
+                <li>Directly ties to phishing investigation</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- DHCP Management -->
+<section id="dhcp">
+    <h2 class="section-title">🔧 DHCP <span>Management</span></h2>
+    <p class="section-subtitle">Enterprise DHCP server configuration and management</p>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Scope Configuration</h3>
+            <p>Installed and configured Windows Server DHCP role with full enterprise scope setup.</p>
+            <ul>
+                <li>Scope: 192.168.100.50 - .200</li>
+                <li>Exclusions: .1 to .49 (static IPs)</li>
+                <li>Gateway: 192.168.100.1</li>
+                <li>DNS: 192.168.100.10</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">📌</div>
+            <h3>IP Reservations</h3>
+            <p>Created MAC-based reservations ensuring specific devices always receive the same IP address.</p>
+            <ul>
+                <li>WIN11-CLIENT workstation</li>
+                <li>Kali Linux security VM</li>
+                <li>Simulated network printer</li>
+                <li>Simulated VoIP phone</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎫</div>
+            <h3>DHCP Tickets Resolved</h3>
+            <p>Simulated and resolved three realistic DHCP Service Desk tickets end-to-end.</p>
+            <ul>
+                <li>No internet — lease renewal</li>
+                <li>IP address conflict resolution</li>
+                <li>Scope exhaustion — expansion</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="security-findings" 
+         style="border-left-color: #2ea043; margin-top: 2rem;">
+        <h4 style="color: #2ea043;">
+            ✅ DHCP Automation Scripts
+        </h4>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Get-DHCPReport.ps1 — Automated scope status report with leases, reservations and utilization statistics</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Monitor-DHCPScope.ps1 — Proactive monitoring script alerting at configurable utilization thresholds</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>DHCP server authorized in Active Directory — prevents rogue DHCP servers on network</span>
+        </div>
+        <div class="finding-item">
+            <span class="flag" style="color: #2ea043;">✅</span>
+            <span>Scope expanded from .150 to .200 during ticket simulation — demonstrating capacity planning</span>
+        </div>
+    </div>
+</section>
 
 <!-- Skills -->
 <section id="skills">
